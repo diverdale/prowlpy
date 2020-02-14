@@ -14,12 +14,22 @@ The socket module must be compiled with SSL support.
 
 
 Coming Backwards Incompatible Changes for 0.6
-=====================================
-- Anything referencing '*apikey' will be renamed to api_key
+===============================================
+- Python 3 compatibility
+- Anything referencing '*apikey*' will be renamed to api_key
 - the package is now in a prowlpy directory, not python. the python directory will be removed
 
 Change Log:
 ===========
+v0.6
+-----
+- raw_input() is now input() in python 3
+- used pyscaffold for directory structure
+- python directory has been removed
+- import statement changes for python 3
+- in python 3 HTTPSConnection is provided by http.client
+- formatted for PEP8 compliance
+
 v0.52
 -----
 - changed demo variables names

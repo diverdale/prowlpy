@@ -1,8 +1,7 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2009, Jaccob Burch
-# Copyright (c) 2010, Olivier Hervieu
+# Copyright (c) 2011, Ken Pepple
+# Copyright (c) 2020, Dale Wright
 #
 # All rights reserved.
 #
@@ -32,14 +31,18 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
-Example notification using prowl.
+Example notification using prowl API v1.2
 """
-import prowlpy
 
-apikey = '1234567890123456789012345678901234567890' #Dummy API-key)
-p = prowlpy.Prowl(apikey)
+
+from prowlpy import prowlpy
+
+# api_key will need to be a valid one ... dummy one below for completeness
+
+api_key = '13212312312312312312312312'
+p = prowlpy.Prowl(api_key)
 try:
-    p.add('TestApp','Server Down',"The Web Box isn't responding to a ping", 1, None, "http://www.prowlapp.com/")
-    print 'Success'
-except Exception,msg:
-    print msg
+    p.add('OctoPrint', 'Job Complete', "Your 3D print job has finished", 1, None, "http://www.prowlapp.com/")
+    print('Success')
+except Exception as msg:
+    print(msg)

@@ -4,6 +4,7 @@
 # Copyright (c) 2009, Jaccob Burch
 # Copyright (c) 2010, Olivier Hervieu
 # Copyright (c) 2011, Ken Pepple
+# Copyright (c) 2020, Dale Wright
 #
 # All rights reserved.
 #
@@ -35,12 +36,9 @@
 """
 Prowlpy V0.50 originally written by Jacob Burch, modified by Olivier Hervieu.
 Updated to Prowl API version 1.2 by Ken Pepple.
-
 Python Prowlpy is a python module that implement the public api of Prowl to
 send push notification to iPhones.
-
 See http://prowlapp.com for information about Prowl.
-
 The prowlpy module respect the API of prowl. So prowlpy provides a Prowl class
 which implements four methods :
 - post, to push a notification to an iPhone,
@@ -50,12 +48,15 @@ which implements four methods :
 - retrieve_apikey, to get an API key from a registration token retrieved in
   retrieve/token.
 """
-from httplib import HTTPSConnection as Https
-from urllib import urlencode
+
+
+from http.client import HTTPSConnection as Https
+from urllib.parse import urlencode
 from xml.dom import minidom
 
 API_DOMAIN = 'api.prowlapp.com'
-VERSION = '0.52'
+VERSION = '0.60'
+
 
 class Prowl(object):
     def __init__(self, apikey, providerkey=None):
@@ -210,20 +211,20 @@ class Prowl(object):
         if request_status == 200:
             dom = minidom.parseString(request.read())
             code = dom.getElementsByTagName('prowl')[0].\
-                            getElementsByTagName('success')[0].\
-                            getAttribute('code')
+                getElementsByTagName('success')[0].\
+                getAttribute('code')
             remaining = dom.getElementsByTagName('prowl')[0].\
-                            getElementsByTagName('success')[0].\
-                            getAttribute('remaining')
+                getElementsByTagName('success')[0].\
+                getAttribute('remaining')
             resetdate = dom.getElementsByTagName('prowl')[0].\
-                            getElementsByTagName('success')[0].\
-                            getAttribute('resetdate')
+                getElementsByTagName('success')[0].\
+                getAttribute('resetdate')
             token = dom.getElementsByTagName('prowl')[0].\
-                        getElementsByTagName('retrieve')[0].\
-                        getAttribute('token')
+                getElementsByTagName('retrieve')[0].\
+                getAttribute('token')
             url = dom.getElementsByTagName('prowl')[0].\
-                      getElementsByTagName('retrieve')[0].\
-                      getAttribute('url')
+                getElementsByTagName('retrieve')[0].\
+                getAttribute('url')
             return dict(token=token, url=url, code=code,
                         remaining=remaining, resetdate=resetdate)
         else:
@@ -271,17 +272,17 @@ class Prowl(object):
         if request_status == 200:
             dom = minidom.parseString(request.read())
             code = dom.getElementsByTagName('prowl')[0].\
-                            getElementsByTagName('success')[0].\
-                            getAttribute('code')
+                getElementsByTagName('success')[0].\
+                getAttribute('code')
             remaining = dom.getElementsByTagName('prowl')[0].\
-                            getElementsByTagName('success')[0].\
-                            getAttribute('remaining')
+                getElementsByTagName('success')[0].\
+                getAttribute('remaining')
             resetdate = dom.getElementsByTagName('prowl')[0].\
-                            getElementsByTagName('success')[0].\
-                            getAttribute('resetdate')
+                getElementsByTagName('success')[0].\
+                getAttribute('resetdate')
             users_api_key = dom.getElementsByTagName('prowl')[0].\
-                                getElementsByTagName('retrieve')[0].\
-                                getAttribute('apikey')
+                getElementsByTagName('retrieve')[0].\
+                getAttribute('apikey')
             return dict(apikey=users_api_key, code=code, remaining=remaining,
                         resetdate=resetdate)
         else:

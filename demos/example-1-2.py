@@ -1,7 +1,7 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Copyright (c) 2011, Ken Pepple
+# Copyright (c) 2020, Dale Wright
 #
 # All rights reserved.
 #
@@ -33,18 +33,19 @@
 """
 Example notification using prowl API v1.2
 """
-import prowlpy
+
+from prowlpy import prowlpy
 
 # get a api_key and provider key at https://www.prowlapp.com/api_settings.php
-api_key = raw_input('Api Key: ')
-provider_key = raw_input('Provider Key (optional): ')
+api_key = input('Api Key: ')
+provider_key = input('Provider Key (optional): ')
 
 p = prowlpy.Prowl(api_key)
 
 # get token for user
 response = p.retrieve_token(provider_key)
 
-print "I got token %s for %s" % (response['token'], response['url'])
+print("I got token %s for %s" % (response['token'], response['url']))
 
 # assuming that the user has accepted your request
 # (they go to the response["url"] via a browser to accept)
