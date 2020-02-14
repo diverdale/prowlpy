@@ -7,6 +7,7 @@ Prowlpy
 | Updated for Prowl API 1.2 by Ken Pepple, 3/5/2011
 | Updated for Python 3 by Dale Wright, 2/14/2020
 
+
 Python module for posting to the iPhone Push Notification service Prowl: http://www.prowlapp.com/
 
 Dependencies:
