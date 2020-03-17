@@ -26,7 +26,6 @@ Change Log:
 v0.6
 -----
 - raw_input() is now input() in python 3
-- used pyscaffold for directory structure
 - python directory has been removed
 - import statement changes for python 3
 - in python 3 HTTPSConnection is provided by http.client
